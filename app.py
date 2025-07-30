@@ -1,8 +1,10 @@
+
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
+import os
 
 app = FastAPI()
 
@@ -16,29 +18,9 @@ app.add_middleware(
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-html = """
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Control Canecas</title>
-    <link rel="stylesheet" href="/static/styles.css">
-</head>
-<body>
-    <h1>Control de Canecas de Reciclaje</h1>
-    <div class="buttons">
-        <button onclick="abrirCaneca(1)">Abrir Caneca 1</button>
-        <button onclick="abrirCaneca(2)">Abrir Caneca 2</button>
-        <button onclick="abrirCaneca(3)">Abrir Caneca 3</button>
-    </div>
-    <script src="/static/script.js"></script>
-</body>
-</html>
-"""
-
 @app.get("/", response_class=HTMLResponse)
 async def get():
-    return html
+    return FileResponse("static/index.html")
 
 active_connections = []
 
