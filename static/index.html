@@ -14,6 +14,7 @@
     body {
       font-family: Arial, sans-serif;
       height: 100vh;
+
     }
 
     main {
@@ -73,13 +74,9 @@
 
     button:hover {
       background-color: rgba(0, 0, 0, 0.1);
-      /* Fondo semi-transparente al pasar el mouse */
       transform: scale(1.05);
-      /* Aumenta ligeramente el tamaño */
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      /* Sombra sutil */
       transition: all 0.3s ease;
-      /* Transición suave */
     }
 
     button img {
@@ -97,7 +94,6 @@
       border-radius: 10px;
     }
 
-    /* Botón de colores por sección */
     .organico button {
       background-color: white;
     }
@@ -109,6 +105,46 @@
     .no-reciclable button {
       background-color: white;
     }
+
+    /* Basurero */
+    #basurero {
+      display: none;
+      height: 100vh;
+      background: #f3f3f3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    #basurero img {
+      max-width: 200px;
+    }
+
+    .residuo-animado {
+      position: absolute;
+      top: -150px;
+      animation: caer 3s ease-in-out 3;
+      /* Repite 3 veces */
+    }
+
+    @keyframes caer {
+      0% {
+        top: -150px;
+        opacity: 0;
+      }
+
+      30% {
+        opacity: 1;
+      }
+
+      100% {
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 1;
+      }
+    }
   </style>
 </head>
 
@@ -116,80 +152,116 @@
   <main>
     <div class="seccion organico">
       <h2>ORGÁNICOS</h2>
-      <div class="imagenes">
-        <button onclick="abrirCaneca(1)">
-          <img src="https://cdn-icons-png.flaticon.com/512/12398/12398282.png" alt="Corazón de manzana">
-        </button>
-        <button onclick="abrirCaneca(1)">
-          <img
-            src="https://us.123rf.com/450wm/latipahlomeng/latipahlomeng1411/latipahlomeng141100036/33870177-banana-peel-with-simple-gradients-banana-peel-and-shadow-on-separate-layers-for-easy-editing.jpg"
-            alt="Cáscara de banano">
-        </button>
-        <button onclick="abrirCaneca(1)">
-          <img
-            src="https://walmartcr.vtexassets.com/arquivos/ids/530616/Pera-Verde-Unidad-1-70092.jpg?v=638419994371530000"
-            alt="Pera">
-        </button>
-        <button onclick="abrirCaneca(1)">
-          <img
-            src="https://media.istockphoto.com/id/1466363949/es/vector/icono-plano-de-desperdicio-de-comida-de-muslo-de-pollo-basura-org%C3%A1nica-clasificada.jpg?s=170667a&w=0&k=20&c=5L_c0i4Zs20fQavgoi48wY3-5fQUmVa_txPiMguKk74="
-            alt="Muslo de pollo">
-        </button>
+        <div class="imagenes">
+          <button onclick="abrirCaneca(1,this)">
+            <img src="https://cdn-icons-png.flaticon.com/512/12398/12398282.png" alt="Corazón de manzana">
+          </button>
+          <button onclick="abrirCaneca(1)">
+            <img
+              src="https://us.123rf.com/450wm/latipahlomeng/latipahlomeng1411/latipahlomeng141100036/33870177-banana-peel-with-simple-gradients-banana-peel-and-shadow-on-separate-layers-for-easy-editing.jpg"
+              alt="Cáscara de banano">
+          </button>
+          <button onclick="abrirCaneca(1,this)">
+            <img
+              src="https://walmartcr.vtexassets.com/arquivos/ids/530616/Pera-Verde-Unidad-1-70092.jpg?v=638419994371530000"
+              alt="Pera">
+          </button>
+          <button onclick="abrirCaneca(1,this)">
+            <img
+              src="https://media.istockphoto.com/id/1466363949/es/vector/icono-plano-de-desperdicio-de-comida-de-muslo-de-pollo-basura-org%C3%A1nica-clasificada.jpg?s=170667a&w=0&k=20&c=5L_c0i4Zs20fQavgoi48wY3-5fQUmVa_txPiMguKk74="
+              alt="Muslo de pollo">
+          </button>
+        </div>
       </div>
-    </div>
+    
 
-    <div class="seccion reciclable">
-      <h2>APROVECHABLES</h2>
-      <div class="imagenes">
-        <button onclick="abrirCaneca(2)">
-          <img
-            src="https://media.cartabon.com/product/cajas-de-carton-doble-marron-varios-tamanos-grandes-800x800.jpg?width=1200"
-            alt="Cartón">
-        </button>
-        <button onclick="abrirCaneca(2)">
-          <img
-            src="https://cdn1.totalcommerce.cloud/casalimpia/product-image/es/vaso-10-onz-transparente-x-50-unidades-1.webp"
-            alt="Vaso plástico">
-        </button>
-        <button onclick="abrirCaneca(2)">
-          <img
-            src="https://media.istockphoto.com/id/184958447/es/foto/gray-bola-de-papel.jpg?s=612x612&w=0&k=20&c=s7aqsDa5o-zqon7OlRYBsnfEwBmqLBQ3Uaf57q86OoE="
-            alt="Papel">
-        </button>
-        <button onclick="abrirCaneca(2)">
-          <img src="https://dinorank.com/img/dinobrain/239193/imagenf0329d6ee6960fb36a68b104c91fd1d0.jpg" alt="Bolsa">
-        </button>
+      <div class="seccion reciclable">
+        <h2>APROVECHABLES</h2>
+        <div class="imagenes">
+          <button onclick="abrirCaneca(2,this)">
+            <img
+              src="https://media.cartabon.com/product/cajas-de-carton-doble-marron-varios-tamanos-grandes-800x800.jpg?width=1200"
+              alt="Cartón">
+          </button>
+          <button onclick="abrirCaneca(2,this)">
+            <img
+              src="https://cdn1.totalcommerce.cloud/casalimpia/product-image/es/vaso-10-onz-transparente-x-50-unidades-1.webp"
+              alt="Vaso plástico">
+          </button>
+          <button onclick="abrirCaneca(2,this)">
+            <img
+              src="https://media.istockphoto.com/id/184958447/es/foto/gray-bola-de-papel.jpg?s=612x612&w=0&k=20&c=s7aqsDa5o-zqon7OlRYBsnfEwBmqLBQ3Uaf57q86OoE="
+              alt="Papel">
+          </button>
+          <button onclick="abrirCaneca(2,this)">
+            <img src="https://dinorank.com/img/dinobrain/239193/imagenf0329d6ee6960fb36a68b104c91fd1d0.jpg" alt="Bolsa">
+          </button>
+        </div>
       </div>
-    </div>
 
-    <div class="seccion no-reciclable">
-      <h2>NO APROVECHABLES</h2>
-      <div class="imagenes">
-        <button onclick="abrirCaneca(3)">
-          <img
-            src="https://www.gruporabsa.com/fotosnoticias/mac_pilas_y_baterias_por_que_no_debemos_desecharlas_con_los_residuos_domesticos_1588916094.png"
-            alt="Vacío 1">
-        </button>
-        <button onclick="abrirCaneca(3)">
-          <img
-            src="https://cdn.shopify.com/s/files/1/0015/6090/3792/files/Cinta_Adhesiva-Acrilica-ParaPaquetes.webp?v=1749149675"
-            alt="Vacío 2">
-        </button>
-        <button onclick="abrirCaneca(3)">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Toiletpapier_%28Gobran111%29.jpg/1200px-Toiletpapier_%28Gobran111%29.jpg"
-            alt="Vacío 1">
-        </button>
-        <button onclick="abrirCaneca(3)">
-          <img
-            src="https://st2.depositphotos.com/1756291/5516/i/450/depositphotos_55167401-stock-photo-old-dirty-used-toothbrush-isolated.jpg"
-            alt="Vacío 2">
-        </button>
+      <div class="seccion no-reciclable">
+        <h2>NO APROVECHABLES</h2>
+        <div class="imagenes">
+          <button onclick="abrirCaneca(3,this)">
+            <img
+              src="https://www.gruporabsa.com/fotosnoticias/mac_pilas_y_baterias_por_que_no_debemos_desecharlas_con_los_residuos_domesticos_1588916094.png"
+              alt="Vacío 1">
+          </button>
+          <button onclick="abrirCaneca(3,this)">
+            <img
+              src="https://cdn.shopify.com/s/files/1/0015/6090/3792/files/Cinta_Adhesiva-Acrilica-ParaPaquetes.webp?v=1749149675"
+              alt="Vacío 2">
+          </button>
+          <button onclick="abrirCaneca(3,this)">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Toiletpapier_%28Gobran111%29.jpg/1200px-Toiletpapier_%28Gobran111%29.jpg"
+              alt="Vacío 1">
+          </button>
+          <button onclick="abrirCaneca(3,this)">
+            <img
+              src="https://st2.depositphotos.com/1756291/5516/i/450/depositphotos_55167401-stock-photo-old-dirty-used-toothbrush-isolated.jpg"
+              alt="Vacío 2">
+          </button>
+        </div>
       </div>
-    </div>
   </main>
 
-  <script src="/static/script.js"></script>
+  <div style="background-color: white;" id="basurero">
+    <img style="width: 1000px; z-index: 2;" id="imagen-basurero" src="" alt="Basurero">
+    <img style="width: 60px;" id="residuo" src="" alt="Residuo">
+  </div>
+
+  <script>
+    function abrirCaneca(tipo, boton) {
+      const main = document.querySelector("main");
+      const basurero = document.getElementById("basurero");
+      const imgResiduo = document.getElementById("residuo");
+      const imgBasurero = document.getElementById("imagen-basurero");
+
+      // Cambiar imagen del basurero según el tipo
+      if (tipo === 1) imgBasurero.src = "caneca.png";
+      if (tipo === 2) imgBasurero.src = "caneca.png";
+      if (tipo === 3) imgBasurero.src = "caneca.png";
+
+      // Imagen del residuo
+      imgResiduo.src = boton.querySelector("img").src;
+
+      // Mostrar basurero y ocultar main
+      main.style.display = "none";
+      basurero.style.display = "flex";
+
+      // Reiniciar animación
+      imgResiduo.classList.remove("residuo-animado");
+      void imgResiduo.offsetWidth; // Hack para reiniciar
+      imgResiduo.classList.add("residuo-animado");
+
+      // Esperar a que termine la animación (1.5s × 3 repeticiones)
+      setTimeout(() => {
+        basurero.style.display = "none";
+        main.style.display = "flex";
+      }, 3 * 3 * 1000);
+    }
+  </script>
 </body>
 
 </html>
